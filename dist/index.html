@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <title>Webpack App</title>
+  </head>
+  <body>
+    <!-- Global Container -->
+    <div
+      class="flex items-center justify-center min-h-screen bg-very-dark-gray"
+    >
+      <!-- Password Generator Container -->
+      <div class="flex flex-col items-center m4 space-y-3 bg-very-dark-gray">
+        <h1 class="font-mono text-grey text-2xl">Password Generator</h1>
+        <!-- Password Container -->
+        <div
+          class="h-[80px] w-[540px] bg-dark-gray flex items-center justify-between"
+        >
+          <span id="result" class="text-[#E6E5EA] opacity-25 text-3xl mx-5 font-mono"
+            >P4$5W0rD!</span
+          >
+          <div class="flex">
+            <span
+              id="copied"
+              class="text-[#A4FFAF] text-md font-mono font-bold mr-5"
+            ></span>
+            <svg
+              id="clipboard"
+              class="mr-7"
+              width="21"
+              height="24"
+              viewBox="0 0 21 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M17.909 0.659016L20.341 3.09098C20.763 3.51294 21 4.08523 21 4.68197V17.25C21 18.4926 19.9926 19.5 18.75 19.5H15V21.75C15 22.9926 13.9926 24 12.75 24H2.25C1.00734 24 0 22.9926 0 21.75V6.75C0 5.50734 1.00734 4.5 2.25 4.5H6V2.25C6 1.00734 7.00734 0 8.25 0H16.3181C16.9147 3.12036e-06 17.4871 0.237058 17.909 0.659016ZM2.53126 21.75H12.4687C12.5434 21.75 12.6149 21.7204 12.6677 21.6677C12.7204 21.6149 12.75 21.5434 12.75 21.4687V19.5H8.25C7.00734 19.5 6 18.4926 6 17.25V6.75H2.53126C2.45665 6.75 2.38512 6.77963 2.33238 6.83238C2.27963 6.88512 2.25 6.95665 2.25 7.03126V21.4687C2.25 21.5434 2.27963 21.6149 2.33238 21.6677C2.38512 21.7204 2.45665 21.75 2.53126 21.75ZM18.4687 17.25H8.53126C8.45665 17.25 8.38512 17.2204 8.33238 17.1677C8.27963 17.1149 8.25 17.0434 8.25 16.9687V2.53126C8.25 2.45665 8.27963 2.38512 8.33238 2.33238C8.38512 2.27963 8.45665 2.25 8.53126 2.25H13.5V6.375C13.5 6.99632 14.0036 7.5 14.625 7.5H18.75V16.9687C18.75 17.0434 18.7204 17.1149 18.6677 17.1677C18.6149 17.2204 18.5434 17.25 18.4687 17.25ZM15.75 5.25H18.75V4.7985C18.75 4.76156 18.7427 4.72499 18.7286 4.69086C18.7145 4.65673 18.6937 4.62572 18.6677 4.59961L16.4004 2.33236C16.3476 2.27963 16.2761 2.25 16.2014 2.25H15.75V5.25Z"
+                fill="#A4FFAF"
+              />
+            </svg>
+          </div>
+        </div>
+        <!-- Functionality Container -->
+        <div
+          class="flex flex-col items-center h-[528px] w-[540px] bg-dark-gray space-y-8"
+        >
+          <!-- Slider Container including Alpine JS x-date for slider number -->
+          <div x-data="{length}" class="flex flex-col items-center">
+            <div
+              class="h-[43px] w-[476px] flex items-center justify-between m-3"
+            >
+              <h3 class="font-mono text-[#E6E5EA] text-lg m-1 p-1">
+                Character Length
+              </h3>
+              <label
+                id="lengthLabel"
+                for="price"
+                class="font-bold font-mono text-[#A4FFAF] text-3xl"
+                x-text="length"
+              ></label>
+            </div>
+            <!-- Slider -->
+            <div class="ml-5">
+              <input
+                type="range"
+                min="0"
+                value="length"
+                name="length"
+                max="20"
+                x-model="length"
+                id="length"
+                class="w-[476px] h-2 bg-gray-200 cursor-pointer dark:bg-gray-700"
+              />
+            </div>
+          </div>
+          <!-- Checkbox container -->
+          <div class="flex flex-col self-start mx-10">
+            <div class="flex items-center mb-4 mt-4">
+              <input
+                checked
+                id="uppercase"
+                type="checkbox"
+                value=""
+                class="w-4 h-4 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <label
+                for="default-checkbox"
+                class="ml-2 text-lg font-medium font-mono text-[#E6E5EA] dark:text-gray-300"
+                >Include Uppercase Letters</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input
+                checked
+                id="lowercase"
+                type="checkbox"
+                value=""
+                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <label
+                for="checked-checkbox"
+                class="ml-2 text-lg font-bold font-mono text-[#E6E5EA] dark:text-gray-300"
+                >Include Lowercase Letters</label
+              >
+            </div>
+            <div class="flex items-center mb-4 mt-4">
+              <input
+                checked
+                id="numbers"
+                type="checkbox"
+                value=""
+                class="w-4 h-4 text-[#E6E5EA] bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <label
+                for="default-checkbox"
+                class="ml-2 text-lg font-medium font-mono text-[#E6E5EA] dark:text-gray-300"
+                >Include Numbers</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input
+                checked
+                id="symbols"
+                type="checkbox"
+                value=""
+                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <label
+                for="checked-checkbox"
+                class="ml-2 text-lg font-medium font-mono text-[#E6E5EA] dark:text-gray-300"
+                >Include Symbols</label
+              >
+            </div>
+          </div>
+          <!-- Strength Container -->
+          <div
+            class="flex h-[72px] w-[476px] bg-[#18171F] items-center justify-around -mt-10"
+          >
+            <div >
+              <h3 class="text-m font-mono font-bold text-[#979797]">
+                STRENGTH
+              </h3>
+            </div>
+       
+              
+            <!-- Strength state container -->
+            <div
+              class="h-[31px] w-[166.5px] bg-[#18171F] flex items-center justify-end "
+              x-data="{length}"
+            >
+                <h3
+                id="strengthText"
+                class="text-xl font-mono mr-2  text-[#E6E5EA] -mx-10"
+              >
+                TOO WEAK!
+              </h3>
+              <div class="flex space-x-2 ml-4"><div id="strength1" class="h-[28px] w-[10px] border"></div>
+              <div id="strength2" class="h-[28px] w-[10px] border"></div>
+              <div id="strength3" class="h-[28px] w-[10px] border"></div>
+              <div id="strength4" class="h-[28px] w-[10px] border"></div></div>
+              
+            </div>
+          </div>
+          <!-- Generate button -->
+          <button
+            id="generate"
+            class="h-[65px] w-[475px] text-[#24232c]  bg-[#A4FFAF] hover:bg-[#24232c] border hover:border-[#A4FFAF] hover:text-[#A4FFAF] flex items-center justify-center"
+          >
+            <h1 class="font-mono  text-[#24232C]">GENERATE</h1>
+            <div class="flex pl-4"><svg
+              class=""
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.10547 12L11.1054 6.00002L5.10547 0L3.84045 1.26501L7.68094 5.10547L0 5.10547V6.8946L7.68094 6.8946L3.84045 10.735L5.10547 12Z"
+                fill="#24232C"
+              />
+            </svg></div>
+            
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="bundle.js"></script>
+  </body>
+</html>
